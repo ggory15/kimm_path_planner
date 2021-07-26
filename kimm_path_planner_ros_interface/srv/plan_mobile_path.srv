@@ -1,0 +1,6 @@
+geometry_msgs/Pose2D current_mobile_state
+geometry_msgs/Pose2D target_mobile_pose
+kimm_path_planner_ros_interface/Obstacle2D[] Obstacles2D
+---
+std_msgs/Bool iscalc
+kimm_path_planner_ros_interface/MobileTrajectory mobile_path

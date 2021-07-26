@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="kimm_path_planner_ros_interface_client" pkg="kimm_path_planner_ros_interface" type="kimm_path_planner_ros_interface_client" output="screen" >
+  </node>
+
+</launch>

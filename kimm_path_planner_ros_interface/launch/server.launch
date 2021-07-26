@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+<group ns ="ns0">
+  <node name="kimm_path_planner_ros_interface_server" pkg="kimm_path_planner_ros_interface" type="kimm_path_planner_ros_interface_server" output="screen" >
+    <param name="save_path" type="string" value="$(find kimm_path_planner_ros_interface)/result/mobile.json"/>    
+    <param name="robot_planning_model" type="string" value="$(find kimm_path_planner)/robot_model/car.svg"/>
+  </node>
+</group>
+</launch>
