@@ -42,7 +42,6 @@ generate_messages(
 )
 
 catkin_package(
- INCLUDE_DIRS include
  LIBRARIES ${PROJECT_NAME}
  CATKIN_DEPENDS roscpp std_msgs geometry_msgs mzcommon steering_functions kimm_path_planner kimm_trajectory_smoother
  DEPENDS system_lib
