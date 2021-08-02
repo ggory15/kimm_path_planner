@@ -57,7 +57,7 @@ bool calculation(kimm_path_planner_ros_interface::plan_mobile_path::Request &req
     global::settings.benchmark.smoothing.ompl_simplify_max = true;
 	global::settings.steer.initializeSteering();
     //global::settings.env.collision.collision_model = robot::ROBOT_POINT;
-    global::settings.max_planning_time = 4;    
+    global::settings.max_planning_time = 0.8;    
     global::settings.env.collision.robot_shape_source = robot_;
 	global::settings.env.collision.initializeCollisionModel();
 
