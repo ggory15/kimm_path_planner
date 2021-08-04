@@ -5,6 +5,7 @@
 #include <ompl/base/samplers/InformedStateSampler.h>
 #include <ompl/base/samplers/informed/PathLengthDirectInfSampler.h>
 
+#include <memory>
 #include <limits>
 
 namespace ob = ompl::base;
@@ -142,4 +143,20 @@ class CurvatureOptimizationObjective : public ob::OptimizationObjective {
 
  protected:
   double max_curvature_;
+};
+
+class BalanceOptimizationObjective : public ob::MultiOptimizationObjective {
+ public:
+  BalanceOptimizationObjective(
+      ob::SpaceInformationPtr &space_info)
+      : ob::MultiOptimizationObjective(space_info) {
+        curvature_obj_ = std::make_shared<CurvatureOptimizationObjective>(space_info);
+        length_obj_ = std::make_shared<CustomPathLengthOptimizationObjective>(space_info);
+        this->addObjective(curvature_obj_, 1.0);
+        this->addObjective(length_obj_, 10.0);
+      }
+
+ protected:
+  std::shared_ptr<CurvatureOptimizationObjective> curvature_obj_;
+  std::shared_ptr<CustomPathLengthOptimizationObjective> length_obj_;
 };

@@ -430,10 +430,10 @@ struct GlobalSettings : public Group {
      * The optimization objective used by OMPL.
      *
      * Currently supported: "min_pathlength", "max_minclearance",
-     * "max_smoothness", "min_curvature"
+     * "max_smoothness", "min_curvature", "balance_length_curvature"
      */
     Property<std::string> optimization_objective{
-        "min_pathlength", "optimization_objective", this};
+        "max_smoothness", "optimization_objective", this};
 
     /**
      * Retrieve available parameters and defaults for geometric planners.

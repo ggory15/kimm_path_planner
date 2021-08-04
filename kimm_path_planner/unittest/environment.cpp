@@ -25,7 +25,7 @@ TEST(TestSuite, testCase1){
 
 	auto info = nlohmann::json({{"plans", {}}});
 	
-	PathEvaluation::evaluate<BFMTPlanner>(info);
+	PathEvaluation::evaluate<InformedRRTstarPlanner>(info);
 	Log::log(info);
 	Log::save("smoothing_cc_dubins.json");
 
@@ -34,7 +34,7 @@ TEST(TestSuite, testCase1){
 	i >> j_tmp;
 	double v1;
 
-	auto v2 =  j_tmp["runs"][0]["plans"]["BFMT"]["path"].get<std::vector<std::vector<double>>>();
+	auto v2 =  j_tmp["runs"][0]["plans"]["InformedRRTstar"]["path"].get<std::vector<std::vector<double>>>();
 	cout << "v1: " << v2[0] << endl;
 }
 

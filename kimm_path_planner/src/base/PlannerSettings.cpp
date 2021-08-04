@@ -262,6 +262,14 @@ void PlannerSettings::GlobalSettings::SteerSettings::initializeSteering()
         std::make_shared<CurvatureOptimizationObjective>(
             global::settings.ompl.space_info);
   }
+  else if (opt_obj_str == std::string("balance_length_curvature")) {
+    // note, OMPL's smoothness is better when smaller
+    global::settings.ompl.objective =
+        std::make_shared<BalanceOptimizationObjective>(
+            global::settings.ompl.space_info);
+        global::settings.ompl.objective->setCostThreshold(
+        ob::Cost(global::settings.ompl.cost_threshold));
+  }
 
 #ifdef DEBUG
   std::cout << "global::settings.ompl.state_space->hasDefaultProjection() ? "
