@@ -4,6 +4,8 @@
   <node name="kimm_path_planner_ros_interface_server" pkg="kimm_path_planner_ros_interface" type="kimm_path_planner_ros_interface_server" output="screen" >
     <param name="save_path" type="string" value="$(find kimm_path_planner_ros_interface)/result/mobile.json"/>    
     <param name="robot_planning_model" type="string" value="$(find kimm_path_planner)/robot_model/car.svg"/>
+    <param name="plan_srv_name" type="string" value="plan_mobile_path"/>
+    <param name="action_srv_name" type="string" value="action_mobile_path"/>
   </node>
 </group>
 </launch>
