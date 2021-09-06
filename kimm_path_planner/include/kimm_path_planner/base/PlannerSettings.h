@@ -415,7 +415,7 @@ struct GlobalSettings : public Group {
 
     Property<double> state_equality_tolerance{1e-4, "state_equality_tolerance",
                                               this};
-    Property<double> cost_threshold{10, "cost_threshold", this};
+    Property<double> cost_threshold{0, "cost_threshold", this};
 
     Property<unsigned int> seed{1, "seed", this};
 

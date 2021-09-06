@@ -73,8 +73,8 @@ class Example:
         self.resp = kimm_path_planner_ros_interface.srv.plan_mobile_pathResponse()
 
     def test(self):
-        self.req.current_mobile_state = geometry_msgs.msg.Pose2D(2, 0.0, -math.pi)
-        self.req.target_mobile_pose = geometry_msgs.msg.Pose2D(1, 1, 1)
+        self.req.current_mobile_state = geometry_msgs.msg.Pose2D(2.0, 0.0, 0)
+        self.req.target_mobile_pose = geometry_msgs.msg.Pose2D(0.6, 0, math.pi)
         obs_xyt = [(-0.5, -0.5, 0.5, 0.5), (-1.4, 1.6, -0.6, 2.4), (0.7, 2.7, 1.3, 3.3)]
         self.req.Obstacles2D = [
             kimm_path_planner_ros_interface.msg.Obstacle2D(

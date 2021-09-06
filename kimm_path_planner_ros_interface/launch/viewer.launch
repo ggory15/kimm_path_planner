@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<launch>
+	<arg name="rvizconfig" default="$(find kimm_path_planner_ros_interface)/launch/rvizconfig.rviz" />
+  	<param name="use_gui" value="true"/>
+  	<group ns ="ns0">
+		<node name="robot_state_publisher" pkg="robot_state_publisher"
+			type="robot_state_publisher" respawn="true">
+			<param name="publish_frequency" value="1000" />
+			<param name="rate" value="1000" />
+		</node>
+	</group>
+
+  	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig) -f odom" required="true" />
+  	
+</launch>
+
+
