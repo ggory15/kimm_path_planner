@@ -56,9 +56,9 @@ bool calculation(kimm_path_planner_ros_interface::plan_mobile_path::Request &req
 	global::settings.steer.car_turning_radius = 0.3 / scaling;
     global::settings.benchmark.smoothing.ompl_simplify_max = true;
 	global::settings.steer.initializeSteering();
-    global::settings.env.collision.collision_model = robot::ROBOT_POINT;
+    //global::settings.env.collision.collision_model = robot::ROBOT_POINT;
     global::settings.max_planning_time = 0.8;    
-    //global::settings.env.collision.robot_shape_source = robot_;
+    global::settings.env.collision.robot_shape_source = robot_;
 	global::settings.env.collision.initializeCollisionModel();
     //global::settings.ompl.optimization_objective.value() = "min_pathlength";
 
