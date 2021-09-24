@@ -16,9 +16,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(Eigen3 REQUIRED)
+find_package(kimm_path_planner REQUIRED)
 
 find_package(kimm_trajectory_smoother REQUIRED)
-
 
 ## Generate messages in the 'msg' folder
 add_message_files(
@@ -77,13 +77,13 @@ include_directories(
 
 #ros_tutorial_srv_server
 add_executable(${PROJECT_NAME}_server src/path_planner_server.cpp)
-target_link_libraries(${PROJECT_NAME}_server  ${catkin_LIBRARIES} kimm_path_planner kimm_trajectory_smoother)
+target_link_libraries(${PROJECT_NAME}_server   ${${PROJECT_NAME}_server_EXPORTEHQPD_TARGETS} ${catkin_LIBRARIES} ${kimm_path_planner_LIBRARIES} ${kimm_trajectory_smoother_LIBRARIES})
 add_dependencies(${PROJECT_NAME}_server kimm_path_planner_ros_interface_gencpp )
 
-#ros_tutorial_srv_client
-add_executable(${PROJECT_NAME}_client src/path_planner_client.cpp)
-target_link_libraries(${PROJECT_NAME}_client   ${catkin_LIBRARIES} kimm_path_planner kimm_trajectory_smoother)
-add_dependencies(${PROJECT_NAME}_client kimm_path_planner_ros_interface_gencpp )
+# # ros_tutorial_srv_client
+# add_executable(${PROJECT_NAME}_client src/path_planner_client.cpp)
+# target_link_libraries(${PROJECT_NAME}_client   ${${PROJECT_NAME}_EXPORTEHQPD_TARGETS}  ${catkin_LIBRARIES} ${kimm_path_planner_LIBRARIES} ${kimm_trajectory_smoother_LIBRARIES} ${OMPL_LIBRARIES})
+# add_dependencies(${PROJECT_NAME}_client kimm_path_planner_ros_interface_gencpp )
 
 
 
