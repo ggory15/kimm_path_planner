@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ompl/base/ScopedState.h"
+#include <ompl/base/ScopedState.h>
 
 #include "kimm_path_planner/base/Primitives.h"
 #include "kimm_path_planner/utils/Stopwatch.hpp"

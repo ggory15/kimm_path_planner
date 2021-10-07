@@ -16,9 +16,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(Eigen3 REQUIRED)
-find_package(kimm_path_planner REQUIRED)
 
 find_package(kimm_trajectory_smoother REQUIRED)
+
 
 ## Generate messages in the 'msg' folder
 add_message_files(
@@ -74,16 +74,31 @@ include_directories(
   ${kimm_trajectory_smoother_INCLUDE_DIRS}
 )
 
+SET(${PROJECT_NAME}_HEADERS
+  include/kimm_path_planner_ros_interface/planner.h
+)
+SET(${PROJECT_NAME}_SOURCES
+  src/planner.cpp
+)
+
+ADD_SOURCE_GROUP(${PROJECT_NAME}_HEADERS)
+ADD_SOURCE_GROUP(${PROJECT_NAME}_SOURCES)
+ADD_LIBRARY(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_SOURCES} ${${PROJECT_NAME}_HEADERS})
+
+set(EXTRA_LIB ${EXTRA_LIB} ${Boost_LIBRARIES} ${kimm_hqp_controller_LIBRARIES})
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} SYSTEM PUBLIC ${EIGEN3_INCLUDE_DIR} ${kimm_trajectory_smoother_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${EXTRA_LIB})
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_generate_messages_cpp )
 
 #ros_tutorial_srv_server
 add_executable(${PROJECT_NAME}_server src/path_planner_server.cpp)
-target_link_libraries(${PROJECT_NAME}_server   ${${PROJECT_NAME}_server_EXPORTEHQPD_TARGETS} ${catkin_LIBRARIES} ${kimm_path_planner_LIBRARIES} ${kimm_trajectory_smoother_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_server  ${catkin_LIBRARIES} kimm_path_planner kimm_trajectory_smoother)
 add_dependencies(${PROJECT_NAME}_server kimm_path_planner_ros_interface_gencpp )
 
-# # ros_tutorial_srv_client
-# add_executable(${PROJECT_NAME}_client src/path_planner_client.cpp)
-# target_link_libraries(${PROJECT_NAME}_client   ${${PROJECT_NAME}_EXPORTEHQPD_TARGETS}  ${catkin_LIBRARIES} ${kimm_path_planner_LIBRARIES} ${kimm_trajectory_smoother_LIBRARIES} ${OMPL_LIBRARIES})
-# add_dependencies(${PROJECT_NAME}_client kimm_path_planner_ros_interface_gencpp )
+#ros_tutorial_srv_client
+add_executable(${PROJECT_NAME}_client src/path_planner_client.cpp)
+target_link_libraries(${PROJECT_NAME}_client   ${catkin_LIBRARIES} kimm_path_planner kimm_trajectory_smoother)
+add_dependencies(${PROJECT_NAME}_client kimm_path_planner_ros_interface_gencpp )
 
 
 
