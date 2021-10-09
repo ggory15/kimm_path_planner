@@ -57,7 +57,7 @@ ENDIF(EIGEN_NO_AUTOMATIC_RESIZING)
 find_package(Eigen3 REQUIRED NO_MODULE)
 include_directories(include ${EIGEN3_INCLUDE_DIR})
 find_package(Boost REQUIRED COMPONENTS system)
-find_package(ompl 1.5 REQUIRED)
+find_package(ompl 1.5.0 REQUIRED)
 include_directories(include ${OMPL_INCLUDE_DIR})
 
 find_package(steering_functions REQUIRED)
