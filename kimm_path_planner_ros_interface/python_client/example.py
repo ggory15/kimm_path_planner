@@ -24,7 +24,7 @@ DEFAULT_QUAT = geometry_msgs.msg.Quaternion(0.0, 0.0, 0.0, 1.0)
 
 def _create_marker_init():
     marker = Marker()
-    marker.header.frame_id = "husky_odom"
+    marker.header.frame_id = "odom"
     marker.header.stamp = rospy.Time()
     marker.ns = "my_namespace"
     marker.id = random.randint(0, 2048)

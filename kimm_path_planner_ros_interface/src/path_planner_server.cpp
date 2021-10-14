@@ -13,8 +13,6 @@
 #include <nlohmann/json.hpp>
 #include <Eigen/Dense>
 
-#include <time.h>
-
 using json = nlohmann::json;
 
 #define TIMEOPT 
@@ -79,13 +77,11 @@ bool calculation(kimm_path_planner_ros_interface::plan_mobile_path::Request &req
         Log::log(info);
         Log::save(save_location_);
         
-        std::ifstream i_data(save_location_);
-
+        std::ifstream i(save_location_);
         json j_tmp;
- 
-        i_data >> j_tmp;
+        i >> j_tmp;
         auto v2 =  j_tmp["runs"][0]["plans"]["InformedRRTstar"]["smoothing"]["ompl_simplify_max"]["trajectory"].get<std::vector<std::vector<double>>>();
-
+       
         geometry_msgs::Pose2D pose;
 
         for (int i=0; i<v2.size(); i++){
@@ -120,7 +116,8 @@ bool calculation(kimm_path_planner_ros_interface::plan_mobile_path::Request &req
 		}
 
         output_trajectory_ = res.mobile_path;
-        i_data.close();        
+        i.close();
+        
 #else
         Log::log(info);
         Log::save(save_location_);
@@ -162,7 +159,7 @@ bool updateTrajectory(kimm_path_planner_ros_interface::action_mobile_path::Reque
     else{
     	output_trajectory_.points.clear();
     	res.mobile_path.points.clear();
-        return true;
+        return false;
     }
 }
 
